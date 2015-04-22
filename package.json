@@ -1,0 +1,20 @@
+{
+  "name": "mithril-delegation",
+  "version": "1.0.0",
+  "description": "Provides a small function to support event delegation in a mithril-y style",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "mithriljs",
+    "event",
+    "delegation",
+    "mithril"
+  ],
+  "author": "Pat Cavit <pcavit@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "mithril": "^0.1.34"
+  }
+}

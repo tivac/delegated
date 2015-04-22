@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Delegation!</title>
+    <script src="../node_modules/mithril/mithril.js"></script>
+    <script src="../index.js"></script>
+
+    <style type="text/css">
+    .selected {
+        background: green;
+    }
+    </style>
+</head>
+<body>
+
+<script type="text/javascript">
+var ints = [],
+    selected = false;
+
+// Create some data
+for (var i = 1; i <= 105; i++) {
+    ints.push(i);
+}
+
+// Hello DOM
+m.module(document.body, {
+    view: function() {
+        return m("ul", {
+                onclick: delegate("li", function(e, el) {
+                    selected = parseInt(el.getAttribute("data-val"), 10);
+                })
+            },
+            ints.map(function(val) {
+                return m("li", {
+                        "data-val": val,
+                        class: val === selected ? "selected" : ""
+                    },
+                    m("a",
+                        m("span", val)
+                    )
+                );
+            })
+        );
+    }
+});
+</script>
+</body>
+</html>
