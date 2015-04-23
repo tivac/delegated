@@ -2,6 +2,10 @@
   "name": "delegated",
   "version": "1.0.0",
   "description": "Tiny Browser event delegation in a single function",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tivac/delegated.git"
+  },
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
