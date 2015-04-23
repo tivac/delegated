@@ -1,22 +1,17 @@
-function delegate(filter, fn) {
-    if(!delegate.matches) {
-        [
-            "matches",
-            "webkitMatchesSelector",
-            "mozMatchesSelector",
-            "msMatchesSelector"
-        ].some(function(method) {
+function delegated(filter, fn) {
+    if(!delegated.matches) {
+        delegated.matchers.some(function(method) {
             if(method in document.body) {
-                delegate.matches = method;
+                delegated.matches = method;
             }
             
-            return delegate.matches;
+            return delegated.matches;
         });
     }
 
     return function(e) {
         var el = e.target,
-            match = delegate.filter(el, e.currentTarget, filter);
+            match = delegated.filter(el, e.currentTarget, filter);
         
         if(!match) {
            return;
@@ -26,14 +21,25 @@ function delegate(filter, fn) {
     };
 }
 
-delegate.filter = function(el, src, filter) {
+delegated.matchers = [
+    "matches",
+    "webkitMatchesSelector",
+    "mozMatchesSelector",
+    "msMatchesSelector"
+];
+
+delegated.filter = function(el, src, filter) {
     if(el === src) {
         return false;
     }
         
-    if(el[delegate.matches](filter)) {
+    if(el[delegated.matches](filter)) {
         return el;
     }
     
-    return delegate.filter(el.parentNode, src, filter);
+    return delegated.filter(el.parentNode, src, filter);
 };
+
+if(typeof module !== "undefined" && module.exports) {
+    module.exports = delegated;
+}
